@@ -29,7 +29,10 @@ def request_until_succeed(url):
             print("Error for URL {}: {}".format(url, datetime.datetime.now()))
             print("Retrying.")
 
-    return response.read()
+    ret = str(response.read())[2:-1]
+    ret = ret.replace(r"\'", "'")
+    ret = ret.replace(r"\\", "\\")
+    return ret
 
 # Needed to write tricky unicode correctly to csv
 
